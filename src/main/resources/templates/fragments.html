@@ -32,7 +32,8 @@
 			<h5 class="card-title">[[*{name}]]</h5>
 			<p class="card-text">[[*{description}]]</p>
 			<div class="d-flex justify-content-center">
-				<a class="me-2" th:replace="~{fragments :: button-detail(@{'/detail/' + ${element.id}}, 'Dettaglio')}"></a>
+				<a class="me-2"
+					th:replace="~{fragments :: button-detail(@{'/detail/' + ${element.id}}, 'Dettaglio')}"></a>
 				<a class="me-2" th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a>
 				<form th:action="@{'/delete/' + ${element.id}}" method="POST">
 					<button class="btn btn-danger">Elimina</button>
@@ -50,7 +51,8 @@
 				<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
 				<div class="d-flex justify-content-center">
 					<a class="me-2" th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a>
-					<a class="me-2" th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a>
+					<a class="me-2"
+						th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a>
 					<form th:action="@{'/delete/' + ${element.id}}" method="POST">
 						<button class="btn btn-danger">Elimina</button>
 					</form>
@@ -64,6 +66,7 @@
 		<h1>Pizzeria</h1>
 		<div>
 			<a th:insert="~{fragments :: button-detail(@{'/create'}, 'Crea nuova pizza')}"></a>
+						<a th:insert="~{fragments :: button-detail(@{'/promo'}, 'Aggiungi Promo')}"></a>
 		</div>
 
 	</header>
