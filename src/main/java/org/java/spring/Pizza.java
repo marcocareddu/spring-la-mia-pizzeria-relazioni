@@ -1,5 +1,7 @@
 package org.java.spring;
 
+import java.util.List;
+
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 import jakarta.persistence.Column;
@@ -7,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Pattern;
 
 @Entity
@@ -31,6 +34,10 @@ public class Pizza {
 	@Range(min = 3, max = 30, message = "Il prezzo deve essere compreso tra €3.00 e €30.00.")
 	private double price;
 
+//	DB Relation
+    @OneToMany(mappedBy = "pizza")
+    private List<Promo> promos;
+	
 //	Constructors
 	public Pizza() {}
 	public Pizza(String name, String description, String img, double price){

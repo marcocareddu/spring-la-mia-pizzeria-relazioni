@@ -6,6 +6,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Promo {
@@ -17,12 +18,17 @@ public class Promo {
 	private LocalDate endPromo;
 	private String title;
 	
+//	DB Relation
+    @ManyToOne
+    private Pizza pizza;
+	
 //	Constructors
-	private Promo() {}
-	private Promo(LocalDate startPromo, LocalDate endPromo, String title) {
+	public Promo() {}
+	public Promo(LocalDate startPromo, LocalDate endPromo, String title, Pizza pizza) {
 		setStartPromo(startPromo);
 		setEndPromo(endPromo);
 		setTitle(title);
+		setPizza(pizza);
 	}
 	
 //	Getters $ Setters
@@ -43,6 +49,12 @@ public class Promo {
 	}
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	public Pizza getPizza() {
+		return pizza;
+	}
+	public void setPizza(Pizza pizza) {
+		this.pizza = pizza;
 	}
 	
 	
