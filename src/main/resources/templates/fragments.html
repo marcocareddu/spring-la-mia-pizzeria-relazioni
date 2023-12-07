@@ -46,18 +46,29 @@
 	<div th:fragment="singleCard(element)" th:object="${element}" class="card col-6 mt-5">
 		<img th:src="@{*{img}}" class="card-img-top img-fluid" th:alt="*{name}">
 		<div class="card-body">
-			<h4 class="card-title">[[*{name}]]</h5>
-				<p class="card-text">[[*{description}]]</p>
-				<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
-				<div class="d-flex justify-content-center">
-					<a class="me-2" th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a>
-					<a class="me-2"
-						th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a>
+			<h4 class="card-title">[[*{name}]]</h4>
+			<p class="card-text">[[*{description}]]</p>
+			<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
+
+			<div>
+				<h6 class="card-title mt-4">Promozioni Attive</h6>
+				<p th:each="element : ${promos}" class="card-text my-2">[[${element.title}]]</p>
+			</div>
+
+			<div class="d-flex justify-content-center">
+				<div class="me-2"><a class="me-2" th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a></div>
+				<div class="me-2"><a th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a></div>
+				<div class="me-2">
 					<form th:action="@{'/delete/' + ${element.id}}" method="POST">
 						<button class="btn btn-danger">Elimina</button>
 					</form>
-											<a th:insert="~{fragments :: button-detail(@{'/detail/' + ${element.id} + '/promo'}, 'Aggiungi Promo')}"></a>
 				</div>
+				<div class="me-2"><a
+						th:insert="~{fragments :: button-detail(@{'/detail/' + ${element.id} + '/promo'}, 'Aggiungi Promo')}"></a>
+				</div>
+
+			</div>
+
 		</div>
 	</div>
 

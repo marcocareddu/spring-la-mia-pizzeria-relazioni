@@ -38,7 +38,13 @@ public class Pizza {
     @OneToMany(mappedBy = "pizza")
     private List<Promo> promos;
 	
-//	Constructors
+public List<Promo> getPromos() {
+		return promos;
+	}
+	public void setPromos(List<Promo> promos) {
+		this.promos = promos;
+	}
+	//	Constructors
 	public Pizza() {}
 	public Pizza(String name, String description, String img, double price){
 		setId(id);

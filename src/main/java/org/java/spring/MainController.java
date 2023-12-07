@@ -31,8 +31,10 @@ public class MainController {
 	@GetMapping("/detail/{id}")
 	public String getPizza(Model model, @PathVariable int id) {
 		Pizza pizza = pizzaService.findById(id);
+		List<Promo> promoList = pizza.getPromos();
 		model.addAttribute("list", pizza);
 		model.addAttribute("id", id);
+		model.addAttribute("promos", promoList);
 		return "detail";
 	}
 
@@ -52,13 +54,13 @@ public class MainController {
 			model.addAttribute("pizza", pizza);
 			return "form";
 		}
-		
+
 		System.out.println("Pizza " + pizza.getName() + " aggiunta");
-		
+
 		pizzaService.save(pizza);
 		return "redirect:/";
 	}
-	
+
 	@GetMapping("/edit/{id}")
 	public String editPizza(Model model, @PathVariable int id) {
 		
@@ -83,7 +85,7 @@ public class MainController {
 		pizzaService.save(pizza);
 		return "redirect:/";
 	}
-	
+
 	@PostMapping("/delete/{id}")
 	public String deletePizza(@PathVariable int id) {
 		pizzaService.deleteById(id);

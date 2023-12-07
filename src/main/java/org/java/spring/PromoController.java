@@ -1,5 +1,4 @@
 package org.java.spring;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +24,7 @@ public class PromoController {
 		model.addAttribute("promo", new Promo());
 		return "promo";
 	}
-	
+
 	@PostMapping("/detail/{id}/promo")
 	public String storePromo(@PathVariable int id, @ModelAttribute Promo promo) {
 		
