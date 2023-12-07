@@ -32,6 +32,7 @@ public class MainController {
 	public String getPizza(Model model, @PathVariable int id) {
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("list", pizza);
+		model.addAttribute("id", id);
 		return "detail";
 	}
 
@@ -76,7 +77,7 @@ public class MainController {
 			model.addAttribute("pizza", pizza);
 			return "form";
 		}
-		
+
 		System.out.println("Pizza " + pizza.getName() + " modificata");
 		
 		pizzaService.save(pizza);

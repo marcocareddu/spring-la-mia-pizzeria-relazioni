@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
 </head>
+
 <body>
-	<h1>Promo:</h1>
-	<form>
+	    <div class="container">
+	<h1>Promo per la pizza [[${pizza.name}]]</h1>
+	
+	<form method="POST" th:object="${promo}">
+		<div class="mb-3">
+			<label for="title" class="form-label">Nome Promozione</label>
+			<input type="text" class="form-control" id="title" th:field="*{title}">
+			<div th:if="${#fields.hasErrors('title')}" class="text-danger">
+				<ul>
+					<li th:each="err : ${#fields.errors('title')}" th:text="${err}"></li>
+				</ul>
+			</div>
+		</div>
 		
+		<div class="mb-3">
+			<label for="startPromo" class="form-label">Data d'inizio promozione</label>
+			<input type="text" class="form-control" id="startPromo" th:field="*{startPromo}">
+			<div th:if="${#fields.hasErrors('startPromo')}" class="text-danger">
+				<ul>
+					<li th:each="err : ${#fields.errors('startPromo')}" th:text="${err}"></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="mb-3">
+			<label for="endPromo" class="form-label">Data di fine promozione</label>
+			<input type="text" class="form-control" id="endPromo" th:field="*{endPromo}">
+			<div th:if="${#fields.hasErrors('endPromo')}" class="text-danger">
+				<ul>
+					<li th:each="err : ${#fields.errors('endPromo')}" th:text="${err}"></li>
+				</ul>
+			</div>
+		</div>
+		<button class="btn btn-danger">Aggiungi</button>
 	</form>
+	    </div>
 </body>
+
 </html>

@@ -30,7 +30,7 @@ public class Promo {
 		setTitle(title);
 		setPizza(pizza);
 	}
-	
+
 //	Getters $ Setters
 	public LocalDate getStartPromo() {
 		return startPromo;

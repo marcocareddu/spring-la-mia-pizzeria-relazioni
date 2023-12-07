@@ -56,19 +56,17 @@
 					<form th:action="@{'/delete/' + ${element.id}}" method="POST">
 						<button class="btn btn-danger">Elimina</button>
 					</form>
+											<a th:insert="~{fragments :: button-detail(@{'/detail/' + ${element.id} + '/promo'}, 'Aggiungi Promo')}"></a>
 				</div>
 		</div>
 	</div>
 
 	<!-- Header -->
 	<header class="position-fixed container justify-content-between d-flex align-items-center" th:fragment="header">
-
 		<h1>Pizzeria</h1>
 		<div>
 			<a th:insert="~{fragments :: button-detail(@{'/create'}, 'Crea nuova pizza')}"></a>
-						<a th:insert="~{fragments :: button-detail(@{'/promo'}, 'Aggiungi Promo')}"></a>
 		</div>
-
 	</header>
 
 </body>
