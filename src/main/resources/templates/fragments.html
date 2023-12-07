@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+
+	<head th:fragment="head">
+
+		<meta charset="ISO-8859-1">
+		<title>Pizzeria</title>
+
+		<!-- Font Awesome -->
+		<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.css'
+			integrity='sha512-tx5+1LWHez1QiaXlAyDwzdBTfDjX07GMapQoFTS74wkcPMsI3So0KYmFe6EHZjI8+eSG0ljBlAQc3PQ5BTaZtQ=='
+			crossorigin='anonymous'>
+
+		<!-- Bootstrap -->
+		<link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}">
+
+		<!-- CSS -->
+		<link rel="stylesheet" th:href="@{/css/application.css}">
+	</head>
+
+	<!-- Button  -->
+	<a th:fragment="button-detail(link, text)" th:href="${link}" th:text="${text}" class="btn btn-danger">
+	</a>
+
+	<!-- multiple Cards -->
+	<div th:fragment="card(list)" th:each="element : ${list}" th:object="${element}" class="card col m-3"
+		style="width: 18rem;">
+		<img th:src="@{*{img}}" class="card-img-top multi-img" th:alt="*{name}">
+		<div class="card-body">
+			<h5 class="card-title">[[*{name}]]</h5>
+			<p class="card-text">[[*{description}]]</p>
+			<div class="d-flex justify-content-center">
+				<a class="me-2" th:replace="~{fragments :: button-detail(@{'/detail/' + ${element.id}}, 'Dettaglio')}"></a>
+				<a class="me-2" th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a>
+				<form th:action="@{'/delete/' + ${element.id}}" method="POST">
+					<button class="btn btn-danger">Elimina</button>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Single Card -->
+	<div th:fragment="singleCard(element)" th:object="${element}" class="card col-6 mt-5">
+		<img th:src="@{*{img}}" class="card-img-top img-fluid" th:alt="*{name}">
+		<div class="card-body">
+			<h4 class="card-title">[[*{name}]]</h5>
+				<p class="card-text">[[*{description}]]</p>
+				<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
+				<div class="d-flex justify-content-center">
+					<a class="me-2" th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a>
+					<a class="me-2" th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a>
+					<form th:action="@{'/delete/' + ${element.id}}" method="POST">
+						<button class="btn btn-danger">Elimina</button>
+					</form>
+				</div>
+		</div>
+	</div>
+
+	<!-- Header -->
+	<header class="position-fixed container justify-content-between d-flex align-items-center" th:fragment="header">
+
+		<h1>Pizzeria</h1>
+		<div>
+			<a th:insert="~{fragments :: button-detail(@{'/create'}, 'Crea nuova pizza')}"></a>
+		</div>
+
+	</header>
+
+</body>
+
+</html>

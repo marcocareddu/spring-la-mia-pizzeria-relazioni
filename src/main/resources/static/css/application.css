@@ -1,0 +1,30 @@
+@charset "ISO-8859-1";
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+header {
+	height: 80px;
+	background-color: #fff;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 1;
+}
+
+img {
+	height: 120px;
+	width: 150px;
+	object-fit: cover;
+}
+
+.search-container {
+	width: 500px;
+}
+
+ul li {
+list-style-type: none;
+}
