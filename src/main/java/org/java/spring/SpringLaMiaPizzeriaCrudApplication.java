@@ -29,10 +29,48 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Override
 	public void run(String... args) throws Exception {
-		pizzaService.save(new Pizza("Bianca", "Pizza con olio d'oliva, rosmarino e sale", "https://wips.plug.it/cips/buonissimo.org/cms/2019/04/pizza-bianca-1.jpg", 3.00));
-		pizzaService.save(new Pizza("Margherita", "Pizza con pomodoro, mozzarella e basilico", "https://wips.plug.it/cips/buonissimo.org/cms/2020/02/pizza-margherita.jpg", 5.00));
-		pizzaService.save(new Pizza("Marinara", "Pizza con pomodoro, aglio e origano", "https://upload.wikimedia.org/wikipedia/commons/1/11/Pizza_marinara.jpg", 3.00));
-		pizzaService.save(new Pizza("Diavola", "Pizza con pomodoro, mozzarella e salame piccante", "https://www.lucianopignataro.it/wp-content/uploads/2023/02/Elementi-Pizzeria-Diavola-480x480.png", 5.00));
+		
+		Ingredient pomodoro = new Ingredient("pomodoro");
+		Ingredient mozzarella = new Ingredient("mozzarella");
+		Ingredient acciughe = new Ingredient("acciughe");
+		Ingredient origano = new Ingredient("origano");
+		Ingredient aglio = new Ingredient("aglio");
+		Ingredient salamePiccante = new Ingredient("salame piccante");
+		Ingredient basilico = new Ingredient("basilico");
+		Ingredient rosmarino = new Ingredient("rosmarino");
+		Ingredient salsiccia = new Ingredient("salsiccia");
+		Ingredient sale = new Ingredient("sale");
+		Ingredient funghi = new Ingredient("funghi");
+		Ingredient gorgonzola = new Ingredient("gorgonzola");
+		Ingredient provola = new Ingredient("provola");
+		Ingredient carciofi = new Ingredient("carciofi");
+		Ingredient cotto = new Ingredient("prosciutto cotto");
+		Ingredient olive = new Ingredient("olive");
+		Ingredient olioOliva = new Ingredient("olio d'oliva");
+		
+		ingredientService.save(pomodoro);
+		ingredientService.save(mozzarella);
+		ingredientService.save(acciughe);
+		ingredientService.save(origano);
+		ingredientService.save(aglio);
+		ingredientService.save(salamePiccante);
+		ingredientService.save(basilico);
+		ingredientService.save(rosmarino);
+		ingredientService.save(salsiccia);
+		ingredientService.save(sale);
+		ingredientService.save(funghi);
+		ingredientService.save(provola);
+		ingredientService.save(gorgonzola);
+		ingredientService.save(carciofi);
+		ingredientService.save(cotto);
+		ingredientService.save(olive);
+		ingredientService.save(olioOliva);
+		
+		
+		pizzaService.save(new Pizza("Bianca", "Pizza bianca", "https://wips.plug.it/cips/buonissimo.org/cms/2019/04/pizza-bianca-1.jpg", 3.00, olioOliva, rosmarino, sale));
+		pizzaService.save(new Pizza("Margherita", "Pizza margherita", "https://wips.plug.it/cips/buonissimo.org/cms/2020/02/pizza-margherita.jpg", 5.00, pomodoro, mozzarella, basilico));
+		pizzaService.save(new Pizza("Marinara", "Pizza marinara", "https://upload.wikimedia.org/wikipedia/commons/1/11/Pizza_marinara.jpg", 3.00, pomodoro, aglio, origano));
+		pizzaService.save(new Pizza("Diavola", "Pizza con pomodoro, mozzarella e salame piccante", "https://www.lucianopignataro.it/wp-content/uploads/2023/02/Elementi-Pizzeria-Diavola-480x480.png", 5.00, pomodoro, mozzarella, salamePiccante));
 		pizzaService.save(new Pizza("Boscaiola", "Pizza con pomodoro, mozzarella, salsiccia e funghi", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqI2bAJj45Kfb35nZLWBvBZDBTuk_HnH8t0x3WRm-wQT8nvVTZe76UfBWZxDKf9qLICrg&usqp=CAU", 6.00));
 		pizzaService.save(new Pizza("Quattro formaggi", "Pizza con mozzarella, parmigiano, gorgonzola e provola (quarto formaggio variabile)", "https://www.petitchef.it/imgupl/recipe/pizza-ai-quattro-formaggi--459380p719602.jpg", 4.00));
 		pizzaService.save(new Pizza("Quattro stagioni", "Pizza con ppomodoro, mozzarella, carciofi, prosciutto cotto, funghi e olive", "https://www.petitchef.it/imgupl/recipe/pizza-4-stagioni--449891p695427.jpg", 4.00));

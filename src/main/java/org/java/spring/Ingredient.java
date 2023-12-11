@@ -1,9 +1,12 @@
 package org.java.spring;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class Ingredient {
@@ -14,6 +17,10 @@ public class Ingredient {
 	
 	private String name;
 	
+//	DB Relation
+    @ManyToMany(mappedBy = "ingredients")
+    private List<Pizza> pizzas;
+	
 	//	Constructors
 	public Ingredient() {}
 	public Ingredient(String name){
@@ -21,7 +28,13 @@ public class Ingredient {
 		setName(name);
 	}
 	
-//	Getters & Setters
+public List<Pizza> getPizzas() {
+		return pizzas;
+	}
+	public void setPizzas(List<Pizza> pizzas) {
+		this.pizzas = pizzas;
+	}
+	//	Getters & Setters
 	public Integer getId() {
 		return id;
 	}
