@@ -1,8 +1,6 @@
 package org.java.spring;
 
 import org.java.spring.services.IngredientService;
-import org.java.spring.services.PizzaService;
-import org.java.spring.services.PromoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,12 +14,6 @@ import jakarta.validation.Valid;
 
 @Controller
 public class IngredientController {
-
-	@Autowired
-	private PizzaService pizzaService;
-
-	@Autowired
-	private PromoService promoService;
 	
 	@Autowired
 	private IngredientService ingredientService;
@@ -48,7 +40,11 @@ public class IngredientController {
 		return "redirect:/index-ingredients";
 	}
 	
-	
+	@PostMapping("/ingredients/delete/{id}")
+	public String deletePizza(@PathVariable int id) {
+		ingredientService.deleteById(id);
+		return "redirect:/index-ingredients";
+	}
 	
 	
 }

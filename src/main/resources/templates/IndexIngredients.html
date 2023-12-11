@@ -20,8 +20,21 @@
 
 		<!-- If list contains elements -->
 		<th:block th:if="${!list.isEmpty()}">
-			<div class="card-container d-flex row row-cols-4 justify-content-center">
-				<span th:each="promo : ${list}" th:object="${promo}" th:text="*{name}"></span>
+			<div class="search-container">
+
+			<div 
+			th:each="ingredient : ${list}"
+			th:object="${ingredient}"
+			class="card-container d-flex align-items-center justify-content-between my-1" 
+			>
+				<span th:text="*{name}"></span>
+					<form th:action="@{'/ingredients/delete/' + *{id}}" method="POST">
+						<button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+					</form>
+					
+				
+			</div>
+				
 			</div>
 		</th:block>
 
