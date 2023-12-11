@@ -14,42 +14,45 @@ public class Ingredient {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String name;
-	
+
 //	DB Relation
-    @ManyToMany(mappedBy = "ingredients")
-    private List<Pizza> pizzas;
-	
-	//	Constructors
-	public Ingredient() {}
-	public Ingredient(String name){
+	@ManyToMany(mappedBy = "ingredients")
+	private List<Pizza> pizzas;
+
+	// Constructors
+	public Ingredient() {
+	}
+
+	public Ingredient(String name) {
 		setId(id);
 		setName(name);
 	}
-	
-public List<Pizza> getPizzas() {
+
+	public List<Pizza> getPizzas() {
 		return pizzas;
 	}
+
 	public void setPizzas(List<Pizza> pizzas) {
 		this.pizzas = pizzas;
 	}
-	//	Getters & Setters
+
+	// Getters & Setters
 	public Integer getId() {
 		return id;
 	}
+
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	
-	
-	
-	
+
 }

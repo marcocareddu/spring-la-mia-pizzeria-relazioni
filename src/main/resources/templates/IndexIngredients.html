@@ -21,11 +21,13 @@
 		<!-- If list contains elements -->
 		<th:block th:if="${!list.isEmpty()}">
 			<div class="card-container d-flex row row-cols-4 justify-content-center">
-				<span
-				th:each="promo : ${list}" th:object="${promo}" th:text="*{name}"
-				></span>
+				<span th:each="promo : ${list}" th:object="${promo}" th:text="*{name}"></span>
 			</div>
 		</th:block>
+
+		<div>
+			<a th:insert="~{fragments :: button-detail(@{'/ingredients/create'}, 'Aggiungi ingrediente')}"></a>
+		</div>
 	</div>
 </body>
 
