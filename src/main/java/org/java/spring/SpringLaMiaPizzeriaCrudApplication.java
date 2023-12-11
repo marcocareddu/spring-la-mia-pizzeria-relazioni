@@ -15,13 +15,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 
 	@Autowired
+	private IngredientService ingredientService;
+	
+	@Autowired
 	private PizzaService pizzaService;
 	
 	@Autowired
 	private PromoService promoService;
-	
-	@Autowired
-	private IngredientService ingredientService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
