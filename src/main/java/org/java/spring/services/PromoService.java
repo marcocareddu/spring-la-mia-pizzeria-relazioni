@@ -1,7 +1,8 @@
-package org.java.spring;
+package org.java.spring.services;
 
 import java.util.List;
 
+import org.java.spring.Promo;
 import org.java.spring.repo.PromoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
