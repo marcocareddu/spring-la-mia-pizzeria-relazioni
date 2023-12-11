@@ -66,7 +66,7 @@
 				<h5>Ingredienti</h5>
 
 				<div 
-				th:each="element : *{ingredients}" 
+				th:each="element : ${ingredients}" 
 				th:object="${element}" 
 				class="form-check"
 				>
