@@ -3,6 +3,7 @@ package org.java.spring;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.java.spring.services.IngredientService;
 import org.java.spring.services.PizzaService;
 import org.java.spring.services.PromoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class SpringLaMiaPizzeriaCrudApplication implements CommandLineRunner {
 	
 	@Autowired
 	private PromoService promoService;
+	
+	@Autowired
+	private IngredientService ingredientService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(SpringLaMiaPizzeriaCrudApplication.class, args);
