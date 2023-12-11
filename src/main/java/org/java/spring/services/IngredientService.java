@@ -1,11 +1,15 @@
 package org.java.spring.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.java.spring.Ingredient;
+import org.java.spring.Pizza;
 import org.java.spring.repo.IngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class IngredientService {
@@ -22,7 +26,23 @@ public class IngredientService {
 	public void save(Ingredient ingredient) {
 		ingredientRepository.save(ingredient);
 	}
-	public void deleteById(int id) {
-		ingredientRepository.deleteById(id);
-	}
+
+	@Transactional
+    public void deleteById(int id) {
+        Optional<Ingredient> ingredientOptional = ingredientRepository.findById(id);
+
+        if (ingredientOptional.isPresent()) {
+            Ingredient ingredient = ingredientOptional.get();
+            List<Pizza> pizzas = ingredient.getPizzas();
+
+            if (pizzas != null) {
+                for (Pizza pizza : pizzas) {
+                    pizza.getIngredients().remove(ingredient);
+                }
+            }
+            
+            ingredientRepository.deleteById(id);
+        }
+    }
+	
 }
