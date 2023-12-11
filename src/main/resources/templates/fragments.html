@@ -81,7 +81,6 @@
 				</div>
 
 			</div>
-
 		</div>
 	</div>
 
@@ -90,6 +89,8 @@
 		<h1>Pizzeria</h1>
 		<div>
 			<a th:insert="~{fragments :: button-detail(@{'/create'}, 'Crea nuova pizza')}"></a>
+			<a th:insert="~{fragments :: button-detail(@{'/index-ingredients'}, 'Ingredienti')}"></a>
+			<a th:insert="~{fragments :: button-detail(@{'/promos'}, 'Promozioni')}"></a>
 		</div>
 	</header>
 

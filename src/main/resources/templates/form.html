@@ -4,71 +4,73 @@
 <head th:replace="~{fragments :: head}"></head>
 
 <body>
-    <div class="container">
-        <div class="title d-flex justify-content-center">
-            <th:block th:if="${action.equals('create')}">
-                <h1>Aggiungi nuova Pizza:</h1>
-            </th:block>
-            <th:block th:if="${action.equals('edit')}">
-                <h1>Modifica Pizza:</h1>
-            </th:block>
-        </div>
+	<header th:insert="~{fragments :: header}"></header>
+	
+	<div class="container">
+		<div class="title d-flex justify-content-center">
+			<th:block th:if="${action.equals('create')}">
+				<h1>Aggiungi nuova Pizza:</h1>
+			</th:block>
+			<th:block th:if="${action.equals('edit')}">
+				<h1>Modifica Pizza:</h1>
+			</th:block>
+		</div>
 
-        <form method="POST" th:object="${pizza}">
-            <div class="mb-3">
+		<form method="POST" th:object="${pizza}">
+			<div class="mb-3">
 
-                <label for="name" class="form-label">Nome</label>
-                <input type="text" class="form-control" id="name" placeholder="Margherita, bianca, napoletana..."
-                    th:field="*{name}">
-                <div th:if="${#fields.hasErrors('name')}" class="text-danger">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
-                    </ul>
-                </div>
-            </div>
+				<label for="name" class="form-label">Nome</label>
+				<input type="text" class="form-control" id="name" placeholder="Margherita, bianca, napoletana..."
+					th:field="*{name}">
+				<div th:if="${#fields.hasErrors('name')}" class="text-danger">
+					<ul>
+						<li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
 
-            <div class="mb-3">
-                <label for="description" class="form-label">Ingredienti</label>
-                <textarea type="text" class="form-control" id="description" rows="3"
-                    placeholder="Pomodoro, mozzarella..." th:field="*{description}"></textarea>
-                <div th:if="${#fields.hasErrors('description')}" class="text-danger">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
-                    </ul>
-                </div>
-            </div>
+			<div class="mb-3">
+				<label for="description" class="form-label">Ingredienti</label>
+				<textarea type="text" class="form-control" id="description" rows="3"
+					placeholder="Pomodoro, mozzarella..." th:field="*{description}"></textarea>
+				<div th:if="${#fields.hasErrors('description')}" class="text-danger">
+					<ul>
+						<li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
 
-            <div class="mb-3">
-                <label for="img" class="form-label">Link foto</label>
-                <input type="text" class="form-control" id="img" placeholder="https://link/immagine.it/..."
-                    th:field="*{img}">
-                <div th:if="${#fields.hasErrors('img')}" class="text-danger">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('img')}" th:text="${err}"></li>
-                    </ul>
-                </div>
-            </div>
+			<div class="mb-3">
+				<label for="img" class="form-label">Link foto</label>
+				<input type="text" class="form-control" id="img" placeholder="https://link/immagine.it/..."
+					th:field="*{img}">
+				<div th:if="${#fields.hasErrors('img')}" class="text-danger">
+					<ul>
+						<li th:each="err : ${#fields.errors('img')}" th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
 
-            <div class="mb-3">
-                <label for="price" class="form-label">Prezzo</label>
-                <input type="text" class="form-control" id="price" placeholder="5.00" th:field="*{price}">
-                <div th:if="${#fields.hasErrors('price')}" class="text-danger">
-                    <ul>
-                        <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
-                    </ul>
-                </div>
-            </div>
+			<div class="mb-3">
+				<label for="price" class="form-label">Prezzo</label>
+				<input type="text" class="form-control" id="price" placeholder="5.00" th:field="*{price}">
+				<div th:if="${#fields.hasErrors('price')}" class="text-danger">
+					<ul>
+						<li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
+					</ul>
+				</div>
+			</div>
 
-            <div class="button-container">
-                <th:block th:if="${action.equals('create')}">
-                    <button class="btn btn-danger">Aggiungi</button>
-                </th:block>
-                <th:block th:if="${action.equals('edit')}">
-                    <button class="btn btn-danger">Aggiorna Pizza</button>
-                </th:block>
-            </div>
-        </form>
-    </div>
+			<div class="button-container">
+				<th:block th:if="${action.equals('create')}">
+					<button class="btn btn-danger">Aggiungi</button>
+				</th:block>
+				<th:block th:if="${action.equals('edit')}">
+					<button class="btn btn-danger">Aggiorna Pizza</button>
+				</th:block>
+			</div>
+		</form>
+	</div>
 
 </body>
 

@@ -4,9 +4,11 @@
 <head th:replace="~{fragments :: head}"></head>
 
 <body>
+	<header th:insert="~{fragments :: header}"></header>
+
 	<div class="container">
 		<h1>Promo per la pizza [[${pizza.name}]]</h1>
-		
+
 		<form method="POST" th:object="${promo}">
 			<div class="mb-3">
 				<label for="title" class="form-label">Nome Promozione</label>

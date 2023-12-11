@@ -1,9 +1,9 @@
 package org.java.spring;
 
 import java.util.List;
-
 import org.java.spring.services.IngredientService;
 import org.java.spring.services.PizzaService;
+import org.java.spring.services.PromoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import jakarta.validation.Valid;
 
 @Controller
@@ -24,6 +23,9 @@ public class PizzaController {
 	
 	@Autowired
 	private IngredientService ingredientService;
+	
+	@Autowired
+	private PromoService promoService;
 
 	@GetMapping
 	public String getPizzas(Model model, @RequestParam(required = false) String searched) {
@@ -37,12 +39,10 @@ public class PizzaController {
 	public String getPizza(Model model, @PathVariable int id) {
 		Pizza pizza = pizzaService.findById(id);
 		List<Promo> promoList = pizza.getPromos();
-		List<Ingredient> ingredients = ingredientService.findAll();
 		
 		model.addAttribute("list", pizza);
 		model.addAttribute("id", id);
 		model.addAttribute("promos", promoList);
-		model.addAttribute("ingredients", ingredients);
 		return "detail";
 	}
 
@@ -72,7 +72,7 @@ public class PizzaController {
 	public String editPizza(Model model, @PathVariable int id) {
 		
 		List<Ingredient> ingredients = ingredientService.findAll();
-		
+
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("pizza", pizza);
 		model.addAttribute("action", "edit");
@@ -101,4 +101,23 @@ public class PizzaController {
 		pizzaService.deleteById(id);
 		return "redirect:/";
 	}
+	
+	@GetMapping("/index-ingredients")
+	public String getIngredients(Model model) {
+		
+		List<Ingredient> ingredients = ingredientService.findAll();
+		model.addAttribute("list", ingredients);
+		
+		return "IndexIngredients";
+	}
+	
+	@GetMapping("/promos")
+	public String getPromos(Model model) {
+
+		List<Promo> promos = promoService.findAll();
+		model.addAttribute("list", promos);
+
+		return "IndexPromo";
+	}
+	
 }
