@@ -1,7 +1,6 @@
 package org.java.spring.services;
 
 import java.util.List;
-import java.util.Optional;
 import org.java.spring.Ingredient;
 import org.java.spring.Pizza;
 import org.java.spring.repo.IngredientRepository;

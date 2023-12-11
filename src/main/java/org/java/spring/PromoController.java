@@ -34,20 +34,10 @@ public class PromoController {
 	@PostMapping("/promos/create")
 	public String store(Model model, @Valid @ModelAttribute Promo promo, BindingResult bindingResult) {
 
-//		if (bindingResult.hasErrors()) {
-//			System.out.println("Errors: \n" + bindingResult);
-//			model.addAttribute("ingredient", ingredient);
-//			return "form";
-//		}
-
 		System.out.println("Promozione " + promo.getTitle() + " aggiunto");
 		promoService.save(promo);
 		return "redirect:/promos";
 	}
-	
-	
-	
-	
 	
 	@GetMapping("/detail/{id}/promo")
 	public String getPromoPage(Model model, @PathVariable int id) {
@@ -66,4 +56,11 @@ public class PromoController {
 
 		return "redirect:/";
 	}
+	
+	@PostMapping("/promos/delete/{id}")
+	public String deletePizza(@PathVariable int id) {
+		promoService.deleteById(id);
+		return "redirect:/promos";
+	}
+	
 }

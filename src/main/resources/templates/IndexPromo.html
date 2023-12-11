@@ -20,11 +20,19 @@
 		</th:block>
 
 		<!-- If list contains elements -->
-		<th:block th:if="${!list.isEmpty()}">
-			<div class="card-container d-flex row row-cols-4 justify-content-center">
-				<ul>
-					<li th:each="promo : ${list}" th:object="${promo}" th:text="*{title}"></li>
-				</ul>
+<th:block th:if="${!list.isEmpty()}">
+			<div class="search-container">
+
+			<div 
+			th:each="promo : ${list}"
+			th:object="${promo}"
+			class="card-container d-flex align-items-center justify-content-between my-1" 
+			>
+				<span th:text="*{title}"></span>
+					<form th:action="@{'/promos/delete/' + *{id}}" method="POST">
+						<button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+					</form>
+			</div>
 			</div>
 		</th:block>
 

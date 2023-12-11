@@ -14,6 +14,12 @@ public class Promo {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	private LocalDate startPromo;
 	private LocalDate endPromo;
 	private String title;
