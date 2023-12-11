@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{fragments :: head}"></head>
 
@@ -7,7 +7,14 @@
 	<header th:insert="~{fragments :: header}"></header>
 
 	<div class="container">
-		<h1>Promo per la pizza [[${pizza.name}]]</h1>
+		<div class="title d-flex justify-content-center">
+			<th:block th:if="${action.equals('create')}">
+				<h1>Aggiungi nuova Pizza:</h1>
+			</th:block>
+			<th:block th:if="${action.equals('edit')}">
+				<h1>Promo per la pizza [[${pizza.name}]]</h1>
+			</th:block>
+		</div>
 
 		<form method="POST" th:object="${promo}">
 			<div class="mb-3">

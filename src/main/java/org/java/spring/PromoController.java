@@ -4,10 +4,13 @@ import org.java.spring.services.PromoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import jakarta.validation.Valid;
 
 
 @Controller
@@ -18,6 +21,33 @@ public class PromoController {
 
 	@Autowired
 	private PromoService promoService;
+	
+	
+	@GetMapping("/promos/create")
+	public String create(Model model) {
+
+		model.addAttribute("promo", new Promo());
+		model.addAttribute("action", "create");
+		return "promo";
+	}
+	
+	@PostMapping("/promos/create")
+	public String store(Model model, @Valid @ModelAttribute Promo promo, BindingResult bindingResult) {
+
+//		if (bindingResult.hasErrors()) {
+//			System.out.println("Errors: \n" + bindingResult);
+//			model.addAttribute("ingredient", ingredient);
+//			return "form";
+//		}
+
+		System.out.println("Promozione " + promo.getTitle() + " aggiunto");
+		promoService.save(promo);
+		return "redirect:/promos";
+	}
+	
+	
+	
+	
 	
 	@GetMapping("/detail/{id}/promo")
 	public String getPromoPage(Model model, @PathVariable int id) {
