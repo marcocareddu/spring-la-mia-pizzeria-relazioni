@@ -50,14 +50,24 @@
 			<p class="card-text">[[*{description}]]</p>
 			<h6 class="text-danger">Prezzo €[[*{price}]]</h6>
 
+			<!-- Ingredients -->
+			<div>
+				<h6 class="card-title mt-4">Ingredienti</h6>
+				<span th:each="element : *{ingredients}" class="card-text my-2"> [[${element.name}]] </span>
+			</div>
+
+			<!-- Promos -->
 			<div>
 				<h6 class="card-title mt-4">Promozioni Attive</h6>
 				<p th:each="element : ${promos}" class="card-text my-2">[[${element.title}]]</p>
 			</div>
 
+			<!-- Single Card Buttons-->
 			<div class="d-flex justify-content-center">
-				<div class="me-2"><a class="me-2" th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a></div>
-				<div class="me-2"><a th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a></div>
+				<div class="me-2"><a class="me-2"
+						th:replace="~{fragments :: button-detail(@{'/'}, 'Torna alla lista')}"></a></div>
+				<div class="me-2"><a
+						th:replace="~{fragments :: button-detail(@{'/edit/' + ${element.id}}, 'Modifica')}"></a></div>
 				<div class="me-2">
 					<form th:action="@{'/delete/' + ${element.id}}" method="POST">
 						<button class="btn btn-danger">Elimina</button>
@@ -65,6 +75,9 @@
 				</div>
 				<div class="me-2"><a
 						th:insert="~{fragments :: button-detail(@{'/detail/' + ${element.id} + '/promo'}, 'Aggiungi Promo')}"></a>
+				</div>
+				<div class="me-2"><a
+						th:insert="~{fragments :: button-detail(@{'/detail/' + ${element.id} + '/promo'}, 'Aggiungi Ingrediente')}"></a>
 				</div>
 
 			</div>

@@ -2,6 +2,7 @@ package org.java.spring;
 
 import java.util.List;
 
+import org.java.spring.services.IngredientService;
 import org.java.spring.services.PizzaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import jakarta.validation.Valid;
 
 @Controller
-public class MainController {
+public class PizzaController {
 
 	@Autowired
 	private PizzaService pizzaService;
+	
+	@Autowired
+	private IngredientService ingredientService;
 
 	@GetMapping
 	public String getPizzas(Model model, @RequestParam(required = false) String searched) {
@@ -33,9 +37,12 @@ public class MainController {
 	public String getPizza(Model model, @PathVariable int id) {
 		Pizza pizza = pizzaService.findById(id);
 		List<Promo> promoList = pizza.getPromos();
+		List<Ingredient> ingredients = ingredientService.findAll();
+		
 		model.addAttribute("list", pizza);
 		model.addAttribute("id", id);
 		model.addAttribute("promos", promoList);
+		model.addAttribute("ingredients", ingredients);
 		return "detail";
 	}
 
@@ -46,7 +53,6 @@ public class MainController {
 		model.addAttribute("action", "create");
 		return "form";
 	}
-
 	@PostMapping("/create")
 	public String store(Model model, @Valid @ModelAttribute Pizza pizza, BindingResult bindingResult) {
 
@@ -65,9 +71,12 @@ public class MainController {
 	@GetMapping("/edit/{id}")
 	public String editPizza(Model model, @PathVariable int id) {
 		
+		List<Ingredient> ingredients = ingredientService.findAll();
+		
 		Pizza pizza = pizzaService.findById(id);
 		model.addAttribute("pizza", pizza);
 		model.addAttribute("action", "edit");
+		model.addAttribute("ingredients", ingredients);
 		
 		return "form";
 	}

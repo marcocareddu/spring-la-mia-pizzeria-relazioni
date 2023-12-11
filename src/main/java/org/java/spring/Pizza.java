@@ -37,27 +37,33 @@ public class Pizza {
 	private double price;
 
 //	DB Relations
-    @OneToMany(mappedBy = "pizza")
-    private List<Promo> promos;
-    
-    @ManyToMany
-    private List<Ingredient> ingredients;
-	
-public List<Ingredient> getIngredients() {
+	@OneToMany(mappedBy = "pizza")
+	private List<Promo> promos;
+
+	@ManyToMany
+	private List<Ingredient> ingredients;
+
+	public List<Ingredient> getIngredients() {
 		return ingredients;
 	}
+
 	public void setIngredients(List<Ingredient> ingredients) {
 		this.ingredients = ingredients;
 	}
-public List<Promo> getPromos() {
+
+	public List<Promo> getPromos() {
 		return promos;
 	}
+
 	public void setPromos(List<Promo> promos) {
 		this.promos = promos;
 	}
-	//	Constructors
-	public Pizza() {}
-	public Pizza(String name, String description, String img, double price, Ingredient... ingredients){
+
+	// Constructors
+	public Pizza() {
+	}
+
+	public Pizza(String name, String description, String img, double price, Ingredient... ingredients) {
 		setId(id);
 		setName(name);
 		setDescription(description);
@@ -65,36 +71,45 @@ public List<Promo> getPromos() {
 		setPrice(price);
 		setIngredients(Arrays.asList(ingredients));
 	}
-	
+
 //	Getters & Setters
 	public void setId(Integer id) {
 		this.id = id;
 	}
+
 	public Integer getId() {
 		return id;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getImg() {
 		return img;
 	}
+
 	public void setImg(String img) {
 		this.img = img;
 	}
+
 	public double getPrice() {
 		return price;
 	}
+
 	public void setPrice(double price) {
 		this.price = price;
-	}	
+	}
 }
